@@ -1,4 +1,21 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import createNextIntlPlugin from 'next-intl/plugin'
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+
+const nextConfig = {
+  i18n: {
+    locales: ['en', 'fa'],
+    defaultLocale: 'fa'
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'assets.aceternity.com',
+      },
+    ],
+  },
+};
+
+export default withNextIntl(nextConfig);
