@@ -1,50 +1,55 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Sidebar as SidebarUi, SidebarBody, SidebarLink } from './ui/Sidebar'
+import { useLocale, useTranslations } from 'next-intl'
+import SidebarUi from './ui/Sidebar'
 import { IconArrowLeft, IconBrandTabler, IconSettings, IconUserBolt } from '@tabler/icons-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
 import Image from 'next/image'
+import SidebarBody from './ui/Sidebar/SidebarBody'
+import SidebarLink from './ui/Sidebar/SidebarLink'
+import SidebarLogo from './ui/Sidebar/Logo'
+import SidebarLogoIcon from './ui/Sidebar/LogoIcon'
 
 export function Sidebar() {
+  const [isOpen, setIsOpen] = useState(false)
+  const activeLocale = useLocale()
+  const t = useTranslations('sidebar')
   const links = [
     {
-      label: 'Dashboard',
-      href: '/dashboard',
+      label: t('dashboard'),
+      href: `/${activeLocale}/dashboard`,
       icon: (
         <IconBrandTabler className='text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0' />
       ),
     },
     {
-      label: 'Profile',
-      href: '/profile',
+      label: t('profile'),
+      href: `/${activeLocale}/profile`,
       icon: (
         <IconUserBolt className='text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0' />
       ),
     },
     {
-      label: 'Settings',
-      href: '/settings',
+      label: t('settings'),
+      href: `/${activeLocale}/settings`,
       icon: (
         <IconSettings className='text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0' />
       ),
     },
     {
-      label: 'Logout',
+      label: t('logout'),
       href: '#',
       icon: (
         <IconArrowLeft className='text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0' />
       ),
     },
   ]
-  const [open, setOpen] = useState(false)
 
   return (
-    <SidebarUi open={open} setOpen={setOpen}>
+    <SidebarUi isOpen={isOpen} setIsOpen={setIsOpen}>
       <SidebarBody className='justify-between gap-10'>
         <div className='flex flex-col flex-1 overflow-y-auto overflow-x-hidden'>
-          {open ? <Logo /> : <LogoIcon />}
+          {isOpen ? <SidebarLogo /> : <SidebarLogoIcon />}
           <div className='mt-8 flex flex-col gap-2'>
             {links.map((link, idx) => (
               <SidebarLink key={idx} link={link} />
@@ -54,7 +59,7 @@ export function Sidebar() {
         <div>
           <SidebarLink
             link={{
-              label: 'Manu Arora',
+              label: t('username'),
               href: '#',
               icon: (
                 <Image
@@ -70,34 +75,5 @@ export function Sidebar() {
         </div>
       </SidebarBody>
     </SidebarUi>
-  )
-}
-
-export const Logo = () => {
-  return (
-    <Link
-      href='/'
-      className='font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20'
-    >
-      <div className='h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0' />
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className='font-medium text-black dark:text-white whitespace-pre'
-      >
-        Acet Labs
-      </motion.span>
-    </Link>
-  )
-}
-
-export const LogoIcon = () => {
-  return (
-    <Link
-      href='#'
-      className='font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20'
-    >
-      <div className='h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0' />
-    </Link>
   )
 }

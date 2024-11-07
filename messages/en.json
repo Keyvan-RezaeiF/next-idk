@@ -1,0 +1,22 @@
+{
+  "sidebar": {
+    "brand": "next-idk",
+    "dashboard": "dashboard",
+    "profile": "profile",
+    "settings": "settings",
+    "logout": "logout",
+    "username": "unknown user"
+  },
+  "home": {
+    "title": "Home"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "settings": {
+    "title": "Settings"
+  }
+}

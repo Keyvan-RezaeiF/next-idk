@@ -1,0 +1,22 @@
+{
+  "sidebar": {
+    "brand": "next-idk",
+    "dashboard": "داشبود",
+    "profile": "پروفایل",
+    "settings": "تنظیمات",
+    "logout": "خروج",
+    "username": "کاربر ناشناس"
+  },
+  "home": {
+    "title": "خانه"
+  },
+  "dashboard": {
+    "title": "داشبود"
+  },
+  "profile": {
+    "title": "پروفایل"
+  },
+  "settings": {
+    "title": "تنظیمات"
+  }
+}
